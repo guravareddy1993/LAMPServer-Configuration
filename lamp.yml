@@ -12,12 +12,12 @@
   tasks:
   - name: install apache2 
     apt:
-      name: {{packagename}}
+      name: "{{packagename}}"
       state: present
       update_cache: yes
   - name: stating the apach2 servcie
     service:
-      name: {{packagename}}
+      name: "{{packagename}}"
       state: started
       enabled: yes
   - name: debugging msg 
@@ -43,7 +43,7 @@
       msg: copied all the files to thier locations               
   - name: restart apach service
     service:
-      name: {{packagename}}
+      name: "{{packagename}}"
       state: restarted
 
 
