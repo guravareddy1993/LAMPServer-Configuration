@@ -34,8 +34,8 @@
       src: "{{ item.src }}"
       dest: "{{item.dest }}"
     with_items:
-      - "{ src= dir.conf , dest= /etc/apache2/mods-enabled/dir.conf }" 
-      - "{ src= info.php , dest= /var/www/html/info.php }"
+      - { src: dir.conf , dest: /etc/apache2/mods-enabled/dir.conf }
+      - { src: info.php , dest: /var/www/html/info.php }
   - name: debugging msg 
     debug:
       msg: copied all the files to thier locations               
