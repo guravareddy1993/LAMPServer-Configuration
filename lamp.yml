@@ -1,15 +1,23 @@
 ---
 - hosts: all
   become: yes
+  vars:
+    packagename: apache2
+    php_packages:
+      - php
+      - libapache2-mod-php
+      - php-mcrypt
+      - php-mysql
+      - php-cli
   tasks:
   - name: install apache2 
     apt:
-      name: apache2
+      name: {{packagename}}
       state: present
       update_cache: yes
   - name: stating the apach2 servcie
     service:
-      name: apache2
+      name: {{packagename}}
       state: started
       enabled: yes
   - name: debugging msg 
@@ -18,17 +26,11 @@
 
   - name: installin the php packages
     apt:
-      name: "{{ item }}"
+      name: "{{ php_packages }}"
       state: present 
-    with_items:
-      - php
-      - libapache2-mod-php
-      - php-mcrypt
-      - php-mysql
-      - php-cli
   - name: debugging msg 
     debug:
-      msg: installed the all php packages     
+      msg: installed the all php packages names are {{php_packages}}    
   - name: example copying file with owner and permissions
     copy:
       src: "{{ item.src }}"
@@ -41,7 +43,7 @@
       msg: copied all the files to thier locations               
   - name: restart apach service
     service:
-      name: apache2
+      name: {{packagename}}
       state: restarted
 
 
