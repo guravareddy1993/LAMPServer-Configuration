@@ -18,7 +18,7 @@
 
   - name: installin the php packages
     service:
-      name: {{ item }}
+      name: "{{ item }}"
       state: started 
     with_items:
       - php
@@ -31,11 +31,11 @@
       msg: installed the all php packages     
   - name: example copying file with owner and permissions
     copy:
-      src: {{ item.src }}
-      dest: {{item.dest }}
+      src: "{{ item.src }}"
+      dest: "{{item.dest }}"
     with_items:
-      - { src= dir.conf , dest= /etc/apache2/mods-enabled/dir.conf }  
-      - { src= info.php , dest= /var/www/html/info.php }
+      - "{ src= dir.conf , dest= /etc/apache2/mods-enabled/dir.conf }" 
+      - "{ src= info.php , dest= /var/www/html/info.php }"
   - name: debugging msg 
     debug:
       msg: copied all the files to thier locations               
