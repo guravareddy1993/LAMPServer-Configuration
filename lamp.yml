@@ -17,9 +17,9 @@
       msg: installed the apach2 and started the service
 
   - name: installin the php packages
-    service:
+    apt:
       name: "{{ item }}"
-      state: started 
+      state: present 
     with_items:
       - php
       - libapache2-mod-php
